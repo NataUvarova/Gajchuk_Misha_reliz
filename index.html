@@ -3,346 +3,404 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Steam UI Prototype</title>
+  <title>Steam Desktop Client</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Контейнер додатка -->
+  <!-- Головне вікно десктопного клієнта Steam -->
   <div class="app-frame">
     
-    <!-- Header -->
+    <!-- Верхня панель навігації Steam -->
     <header class="app-header">
       <div class="app-logo">🎮 STEAM</div>
+      <nav class="top-nav">
+        <a href="#store" class="top-link active">Магазин</a>
+        <a href="#library" class="top-link">Бібліотека</a>
+        <a href="#community" class="top-link">Спільнота</a>
+      </nav>
       <div class="search-input-wrap">
-        <input type="text" placeholder="Пошук ігор...">
+        <input type="text" placeholder="Пошук у магазині...">
       </div>
-      <div class="user-badge">UA</div>
+      <a href="#profile" class="user-badge" title="Профіль">UA</a>
     </header>
 
     <!-- Основний контент -->
     <main class="main-body">
       
-      <!-- ================= СТОРІНКА 1: МАГАЗИН ================= -->
+      <!-- ================= СТОРІНКА 1: МАГАЗИН (ГОЛОВНА) ================= -->
       <section id="store" class="page-section">
-        <!-- Promoted Hero Banner -->
-        <div class="hero-banner">
-          <span class="promo-tag">Знижка дня</span>
+        
+        <!-- Головний промо-банер -->
+        <div class="hero-banner" style="background-image: linear-gradient(90deg, rgba(27,40,56,0.95) 0%, rgba(27,40,56,0.4) 100%), url('https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg');">
+          <span class="promo-tag">Хіт мільйонів • Акція</span>
           <div class="banner-title">Cyberpunk 2077: Phantom Liberty</div>
-          <div class="banner-desc">Велике екшен-RPG доповнення у світі кіберпанку.</div>
+          <div class="banner-desc">Пориньте у шпигунський техно-трилер у темному світі Найт-Сіті.</div>
           <div class="price-row">
             <span class="discount-badge">-50%</span>
             <span class="price-amount">649 грн</span>
-            <a href="#game-details" class="buy-btn" style="text-decoration: none;">Детальніше</a>
+            <a href="#cyberpunk-details" class="buy-btn">Детальніше</a>
           </div>
         </div>
 
-        <!-- Category Filter Chips -->
+        <!-- Фільтри жанрів -->
         <div class="filter-chips">
-          <a href="#store" class="chip-btn active">Всі</a>
-          <a href="#action-games" class="chip-btn" style="text-decoration: none;">Екшен</a>
-          <a href="#rpg-games" class="chip-btn" style="text-decoration: none;">RPG</a>
-          <a href="#store" class="chip-btn">Інді</a>
-          <a href="#store" class="chip-btn">Стратегії</a>
+          <a href="#store" class="chip-btn active">Всі ігри</a>
+          <a href="#free-games" class="chip-btn" style="text-decoration: none;">Безкоштовні</a>
+          <a href="#action-cat" class="chip-btn" style="text-decoration: none;">Екшен</a>
+          <a href="#survival-cat" class="chip-btn" style="text-decoration: none;">Виживання</a>
+          <a href="#multiplayer-cat" class="chip-btn" style="text-decoration: none;">Мультиплеєр</a>
         </div>
 
-        <div class="section-heading">Популярне та новинки</div>
+        <div class="section-heading">🔥 Найпопулярніші ігри серед гравців</div>
 
-        <!-- List of Games (Картки-посилання на окремі сторінки ігор) -->
-        <div class="games-list">
-          
+        <div class="games-grid">
+          <a href="#cs2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="CS2"></div>
+            <div class="game-info">
+              <div class="game-name">Counter-Strike 2</div>
+              <div class="game-tags">Шутер • Тактика • Кіберспорт</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+
+          <a href="#dota2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" alt="Dota 2"></div>
+            <div class="game-info">
+              <div class="game-name">Dota 2</div>
+              <div class="game-tags">Стратегія • MOBA • Командна</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+
+          <a href="#terraria-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg" alt="Terraria"><span class="card-discount">-50%</span></div>
+            <div class="game-info">
+              <div class="game-name">Terraria</div>
+              <div class="game-tags">Пісочниця • Виживання • Крафт</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><div class="price-box"><span class="old-price">279 грн</span><span class="price-tag highlight">139 грн</span></div></div>
+            </div>
+          </a>
+
           <a href="#gta-details" class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=200&auto=format&fit=crop" alt="GTA V">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA V"></div>
             <div class="game-info">
               <div class="game-name">Grand Theft Auto V</div>
-              <div class="game-genre">Екшен, Відкритий світ</div>
-            </div>
-            <div class="game-price-box">
-              <span class="price-amount">829 грн</span>
+              <div class="game-tags">Екшен • Відкритий світ</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag">829 грн</span></div>
             </div>
           </a>
 
-          <a href="#rdr2-details" class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=200&auto=format&fit=crop" alt="Red Dead Redemption 2">
+          <a href="#lethal-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg" alt="Lethal Company"></div>
             <div class="game-info">
-              <div class="game-name">Red Dead Redemption 2</div>
-              <div class="game-genre">Пригоди, Вестерн</div>
-            </div>
-            <div class="game-price-box">
-              <span class="discount-badge">-67%</span>
-              <span class="price-amount">299 грн</span>
+              <div class="game-name">Lethal Company</div>
+              <div class="game-tags">Хоррор • Виживання • Кооператив</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag">145 грн</span></div>
             </div>
           </a>
 
-          <a href="#gow-details" class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=200&auto=format&fit=crop" alt="God of War">
+          <a href="#bg3-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="BG3"></div>
             <div class="game-info">
-              <div class="game-name">God of War</div>
-              <div class="game-genre">Екшен, Пригоди</div>
-            </div>
-            <div class="game-price-box">
-              <span class="price-amount">1199 грн</span>
+              <div class="game-name">Baldur's Gate 3</div>
+              <div class="game-tags">RPG • Шедевр • Сюжет</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag">1199 грн</span></div>
             </div>
           </a>
-
         </div>
       </section>
 
 
-      <!-- ================= СТОРІНКА ГРИ 1: GTA V ================= -->
+      <!-- ================= КАТЕГОРІЯ: БЕЗКОШТОВНІ ІГРИ ================= -->
+      <section id="free-games" class="page-section">
+        <div class="filter-chips">
+          <a href="#store" class="chip-btn" style="text-decoration: none;">Всі ігри</a>
+          <a href="#free-games" class="chip-btn active" style="text-decoration: none;">Безкоштовні</a>
+          <a href="#action-cat" class="chip-btn" style="text-decoration: none;">Екшен</a>
+          <a href="#survival-cat" class="chip-btn" style="text-decoration: none;">Виживання</a>
+          <a href="#multiplayer-cat" class="chip-btn" style="text-decoration: none;">Мультиплеєр</a>
+        </div>
+        <div class="section-heading">🎁 Безкоштовні ігри (Free-to-Play)</div>
+        <div class="games-grid">
+          <a href="#cs2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="CS2"></div>
+            <div class="game-info">
+              <div class="game-name">Counter-Strike 2</div>
+              <div class="game-tags">Шутер • Тактика • Кіберспорт</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+          <a href="#dota2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" alt="Dota 2"></div>
+            <div class="game-info">
+              <div class="game-name">Dota 2</div>
+              <div class="game-tags">Стратегія • MOBA • Командна</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- ================= КАТЕГОРІЯ: ЕКШЕН ================= -->
+      <section id="action-cat" class="page-section">
+        <div class="filter-chips">
+          <a href="#store" class="chip-btn" style="text-decoration: none;">Всі ігри</a>
+          <a href="#free-games" class="chip-btn" style="text-decoration: none;">Безкоштовні</a>
+          <a href="#action-cat" class="chip-btn active" style="text-decoration: none;">Екшен</a>
+          <a href="#survival-cat" class="chip-btn" style="text-decoration: none;">Виживання</a>
+          <a href="#multiplayer-cat" class="chip-btn" style="text-decoration: none;">Мультиплеєр</a>
+        </div>
+        <div class="section-heading">💥 Екшен ігри</div>
+        <div class="games-grid">
+          <a href="#cs2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="CS2"></div>
+            <div class="game-info">
+              <div class="game-name">Counter-Strike 2</div>
+              <div class="game-tags">Шутер • Тактика</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+          <a href="#gta-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="GTA V"></div>
+            <div class="game-info">
+              <div class="game-name">Grand Theft Auto V</div>
+              <div class="game-tags">Екшен • Відкритий світ</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag">829 грн</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- ================= КАТЕГОРІЯ: ВИЖИВАННЯ ================= -->
+      <section id="survival-cat" class="page-section">
+        <div class="filter-chips">
+          <a href="#store" class="chip-btn" style="text-decoration: none;">Всі ігри</a>
+          <a href="#free-games" class="chip-btn" style="text-decoration: none;">Безкоштовні</a>
+          <a href="#action-cat" class="chip-btn" style="text-decoration: none;">Екшен</a>
+          <a href="#survival-cat" class="chip-btn active" style="text-decoration: none;">Виживання</a>
+          <a href="#multiplayer-cat" class="chip-btn" style="text-decoration: none;">Мультиплеєр</a>
+        </div>
+        <div class="section-heading">🌲 Ігри на виживання</div>
+        <div class="games-grid">
+          <a href="#terraria-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg" alt="Terraria"></div>
+            <div class="game-info">
+              <div class="game-name">Terraria</div>
+              <div class="game-tags">Пісочниця • Виживання</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag highlight">139 грн</span></div>
+            </div>
+          </a>
+          <a href="#lethal-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg" alt="Lethal Company"></div>
+            <div class="game-info">
+              <div class="game-name">Lethal Company</div>
+              <div class="game-tags">Хоррор • Виживання</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag">145 грн</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- ================= КАТЕГОРІЯ: МУЛЬТИПЛЕЄР ================= -->
+      <section id="multiplayer-cat" class="page-section">
+        <div class="filter-chips">
+          <a href="#store" class="chip-btn" style="text-decoration: none;">Всі ігри</a>
+          <a href="#free-games" class="chip-btn" style="text-decoration: none;">Безкоштовні</a>
+          <a href="#action-cat" class="chip-btn" style="text-decoration: none;">Екшен</a>
+          <a href="#survival-cat" class="chip-btn" style="text-decoration: none;">Виживання</a>
+          <a href="#multiplayer-cat" class="chip-btn active" style="text-decoration: none;">Мультиплеєр</a>
+        </div>
+        <div class="section-heading">👥 Мультиплеєрні ігри</div>
+        <div class="games-grid">
+          <a href="#cs2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="CS2"></div>
+            <div class="game-info">
+              <div class="game-name">Counter-Strike 2</div>
+              <div class="game-tags">Шутер • Мультиплеєр</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+          <a href="#dota2-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" alt="Dota 2"></div>
+            <div class="game-info">
+              <div class="game-name">Dota 2</div>
+              <div class="game-tags">MOBA • Мультиплеєр</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag" style="color: #66c0f4;">Безкоштовно</span></div>
+            </div>
+          </a>
+          <a href="#lethal-details" class="game-card">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg" alt="Lethal Company"></div>
+            <div class="game-info">
+              <div class="game-name">Lethal Company</div>
+              <div class="game-tags">Кооператив • Мультиплеєр</div>
+              <div class="game-footer-row"><span class="game-platform">Windows</span><span class="price-tag">145 грн</span></div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- ================= СТОРІНКИ ДЕТАЛЕЙ ІГОР ================= -->
+      <section id="cs2-details" class="page-section">
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Counter-Strike 2</h2>
+            <p class="detail-desc">Найбільший технічний стрибок в історії Counter-Strike. Нова гра на рушії Source 2.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="cs"></div>
+          </div>
+          <div class="detail-right"><div class="buy-box-panel"><div class="price-big" style="color: #66c0f4;">Безкоштовно</div><a href="#library" class="green-btn">Додати в бібліотеку</a></div></div>
+        </div>
+      </section>
+
+      <section id="dota2-details" class="page-section">
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Dota 2</h2>
+            <p class="detail-desc">Командна стратегія з мільйонами гравців по всьому світу.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/header.jpg" alt="dota"></div>
+          </div>
+          <div class="detail-right"><div class="buy-box-panel"><div class="price-big" style="color: #66c0f4;">Безкоштовно</div><a href="#library" class="green-btn">Грати зараз</a></div></div>
+        </div>
+      </section>
+
+      <section id="terraria-details" class="page-section">
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Terraria</h2>
+            <p class="detail-desc">Копайте, бойтеся, досліджуйте та будуйте у захопливій пісочниці.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg" alt="terraria"></div>
+          </div>
+          <div class="detail-right"><div class="buy-box-panel"><span class="discount-badge">-50%</span><div class="price-big">139 грн</div><a href="#library" class="green-btn">Купити</a></div></div>
+        </div>
+      </section>
+
       <section id="gta-details" class="page-section">
-        <div style="margin-bottom: 10px;">
-          <a href="#store" class="chip-btn" style="display: inline-block; text-decoration: none;">← Назад у магазин</a>
-        </div>
-        
-        <div class="hero-banner" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop'); min-height: 180px; margin-bottom: 12px;">
-          <span class="promo-tag">Хіт</span>
-          <div class="banner-title" style="font-size: 18px;">Grand Theft Auto V</div>
-          <div class="banner-desc">Культовий відкритий світ у сонячному Лос-Сантосі.</div>
-        </div>
-
-        <div class="news-card" style="margin-bottom: 12px;">
-          <h3 class="news-title">Про гру</h3>
-          <p class="news-text">Пориньте у кримінальний світ разом із трьома унікальними персонажами — Майклом, Тревором та Франкліном. Виконуйте зухвалі пограбування та досліджуйте величезний деталізований світ.</p>
-        </div>
-
-        <div class="price-row" style="background: var(--card-bg); padding: 12px; border-radius: 8px; justify-content: space-between;">
-          <span class="price-amount" style="font-size: 14px;">829 грн</span>
-          <a href="#store" class="buy-btn" style="text-decoration: none; text-align: center; margin:0;">Купити</a>
-        </div>
-      </section>
-
-
-      <!-- ================= СТОРІНКА ГРИ 2: RED DEAD REDEMPTION 2 ================= -->
-      <section id="rdr2-details" class="page-section">
-        <div style="margin-bottom: 10px;">
-          <a href="#store" class="chip-btn" style="display: inline-block; text-decoration: none;">← Назад у магазин</a>
-        </div>
-        
-        <div class="hero-banner" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop'); min-height: 180px; margin-bottom: 12px;">
-          <span class="promo-tag" style="background-color: var(--discount-bg); color: var(--discount-text);">-67%</span>
-          <div class="banner-title" style="font-size: 18px;">Red Dead Redemption 2</div>
-          <div class="banner-desc">Епічна історія про Дикий Захід від творців GTA.</div>
-        </div>
-
-        <div class="news-card" style="margin-bottom: 12px;">
-          <h3 class="news-title">Про гру</h3>
-          <p class="news-text">1899 рік, доба занепаду Дикого Заходу. Артур Морган та банда Ван дер Лінде змушені тікати. За ними женуться федеральні агенти та найкращі мисливці за головами на континенті.</p>
-        </div>
-
-        <div class="price-row" style="background: var(--card-bg); padding: 12px; border-radius: 8px; justify-content: space-between;">
-          <div>
-            <span class="discount-badge">-67%</span>
-            <span class="price-amount" style="font-size: 14px; margin-left: 6px;">299 грн</span>
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Grand Theft Auto V</h2>
+            <p class="detail-desc">Величезний відкритий світ Лос-Сантоса та небезпечні пригоди.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/271590/header.jpg" alt="gta"></div>
           </div>
-          <a href="#store" class="buy-btn" style="text-decoration: none; text-align: center; margin:0;">Купити</a>
+          <div class="detail-right"><div class="buy-box-panel"><div class="price-big">829 грн</div><a href="#library" class="green-btn">Купити</a></div></div>
         </div>
       </section>
 
-
-      <!-- ================= СТОРІНКА ГРИ 3: GOD OF WAR ================= -->
-      <section id="gow-details" class="page-section">
-        <div style="margin-bottom: 10px;">
-          <a href="#store" class="chip-btn" style="display: inline-block; text-decoration: none;">← Назад у магазин</a>
-        </div>
-        
-        <div class="hero-banner" style="background-image: url('https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=800&auto=format&fit=crop'); min-height: 180px; margin-bottom: 12px;">
-          <span class="promo-tag">Шедевр</span>
-          <div class="banner-title" style="font-size: 18px;">God of War</div>
-          <div class="banner-desc">Сувора подорож Кратоса та його сина у світі міфів.</div>
-        </div>
-
-        <div class="news-card" style="margin-bottom: 12px;">
-          <h3 class="news-title">Про гру</h3>
-          <p class="news-text">Помстившись богам Олімпу, Кратос живе у царстві скандинавських божеств та монстрів. У цьому суворому світі він повинен не лише боротися за виживання, а й навчити цього свого сина.</p>
-        </div>
-
-        <div class="price-row" style="background: var(--card-bg); padding: 12px; border-radius: 8px; justify-content: space-between;">
-          <span class="price-amount" style="font-size: 14px;">1199 грн</span>
-          <a href="#store" class="buy-btn" style="text-decoration: none; text-align: center; margin:0;">Купити</a>
-        </div>
-      </section>
-
-
-      <!-- ================= ПІДКАТЕГОРІЯ: ЕКШЕН ІГРИ ================= -->
-      <section id="action-games" class="page-section">
-        <div class="filter-chips">
-          <a href="#store" class="chip-btn" style="text-decoration: none;">Всі</a>
-          <a href="#action-games" class="chip-btn active" style="text-decoration: none;">Екшен</a>
-          <a href="#rpg-games" class="chip-btn" style="text-decoration: none;">RPG</a>
-        </div>
-        <div class="section-heading">Категорія: Екшен ігри</div>
-        <div class="games-list">
-          <a href="#gta-details" class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=200&auto=format&fit=crop" alt="GTA V">
-            <div class="game-info">
-              <div class="game-name">Grand Theft Auto V</div>
-              <div class="game-genre">Екшен, Відкритий світ</div>
-            </div>
-            <div class="game-price-box"><span class="price-amount">829 грн</span></div>
-          </a>
-          <a href="#gow-details" class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=200&auto=format&fit=crop" alt="God of War">
-            <div class="game-info">
-              <div class="game-name">God of War</div>
-              <div class="game-genre">Екшен, Пригоди</div>
-            </div>
-            <div class="game-price-box"><span class="price-amount">1199 грн</span></div>
-          </a>
-        </div>
-      </section>
-
-
-      <!-- ================= ПІДКАТЕГОРІЯ: RPG ІГРИ ================= -->
-      <section id="rpg-games" class="page-section">
-        <div class="filter-chips">
-          <a href="#store" class="chip-btn" style="text-decoration: none;">Всі</a>
-          <a href="#action-games" class="chip-btn" style="text-decoration: none;">Екшен</a>
-          <a href="#rpg-games" class="chip-btn active" style="text-decoration: none;">RPG</a>
-        </div>
-        <div class="section-heading">Категорія: RPG ігри</div>
-        <div class="games-list">
-          <div class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=200&auto=format&fit=crop" alt="Elden Ring">
-            <div class="game-info">
-              <div class="game-name">Elden Ring</div>
-              <div class="game-genre">Souls-like, RPG</div>
-            </div>
-            <div class="game-price-box"><span class="price-amount">899 грн</span></div>
+      <section id="lethal-details" class="page-section">
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Lethal Company</h2>
+            <p class="detail-desc">Кооперативний хорор на закинутих індустріальних місяцях.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg" alt="lethal"></div>
           </div>
+          <div class="detail-right"><div class="buy-box-panel"><div class="price-big">145 грн</div><a href="#library" class="green-btn">Купити</a></div></div>
         </div>
       </section>
 
-
-      <!-- ================= СТОРІНКА ДЕТАЛЕЙ КІБЕРПАНКУ З БАНЕРА ================= -->
-      <section id="game-details" class="page-section">
-        <div style="margin-bottom: 10px;">
-          <a href="#store" class="chip-btn" style="display: inline-block; text-decoration: none;">← Назад у магазин</a>
-        </div>
-        
-        <div class="hero-banner" style="min-height: 180px; margin-bottom: 12px;">
-          <span class="promo-tag">Хіт продажів</span>
-          <div class="banner-title" style="font-size: 18px;">Cyberpunk 2077: Phantom Liberty</div>
-          <div class="banner-desc">Розширене видання з шпигунським трилером у Найт-Сіті.</div>
-        </div>
-
-        <div class="news-card" style="margin-bottom: 12px;">
-          <h3 class="news-title">Про гру</h3>
-          <p class="news-text">Phantom Liberty — це нове сюжетне доповнення для Cyberpunk 2077 у жанрі техно-трилера. Поверніться у ролі найманця Ві та розкрийте змову вищого рівня.</p>
-        </div>
-
-        <div class="price-row" style="background: var(--card-bg); padding: 12px; border-radius: 8px; justify-content: space-between;">
-          <div>
-            <span class="discount-badge">-50%</span>
-            <span class="price-amount" style="font-size: 14px; margin-left: 6px;">649 грн</span>
+      <section id="bg3-details" class="page-section">
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Baldur's Gate 3</h2>
+            <p class="detail-desc">Епічна рольова гра у всесвіті D&D з неймовірним сюжетом.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="bg3"></div>
           </div>
-          <a href="#store" class="buy-btn" style="text-decoration: none; text-align: center;">Купити зараз</a>
+          <div class="detail-right"><div class="buy-box-panel"><div class="price-big">1199 грн</div><a href="#library" class="green-btn">Купити</a></div></div>
         </div>
       </section>
 
+      <section id="cyberpunk-details" class="page-section">
+        <div class="back-bar"><a href="#store" class="chip-btn">← Повернутися до магазину</a></div>
+        <div class="game-detail-container">
+          <div class="detail-left">
+            <h2>Cyberpunk 2077: Phantom Liberty</h2>
+            <p class="detail-desc">Шпигунський трилер у Найт-Сіті.</p>
+            <div class="screenshot-grid"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" alt="cp"></div>
+          </div>
+          <div class="detail-right"><div class="buy-box-panel"><span class="discount-badge">-50%</span><div class="price-big">649 грн</div><a href="#library" class="green-btn">Купити</a></div></div>
+        </div>
+      </section>
 
-      <!-- ================= СТОРІНКА 2: НОВИНИ ================= -->
+      <!-- ================= НОВИНИ ================= -->
       <section id="news" class="page-section">
-        <div class="section-heading">Останні новини ігор та оновлення</div>
-        
-        <div class="news-list">
-          <article class="news-card">
-            <div class="news-date">Сьогодні, 14:30 • Патч 7.35</div>
-            <h3 class="news-title">Оновлення CS 2: Нові карти та виправлення багів</h3>
-            <p class="news-text">Розробники випустили великий патч, який покращує продуктивність на слабких ПК.</p>
-            <div class="news-footer">
-              <span class="news-tag">Анонс</span>
-              <span class="news-comments">💬 342 коментарі</span>
-            </div>
-          </article>
+        <div class="section-heading">📰 Новини та оновлення платформи Steam</div>
+        <div class="news-card">
+          <div class="news-date">Сьогодні о 15:00</div>
+          <h3 class="news-title">Велике оновлення канікул у Steam!</h3>
+          <p class="news-text">Збирайте друзів та грайте у нові командні ігри зі знижками.</p>
         </div>
       </section>
 
-      <!-- ================= СТОРІНКА 3: БІБЛІОТЕКА ================= -->
+      <!-- ================= БІБЛІОТЕКА ================= -->
       <section id="library" class="page-section">
-        <div class="filter-chips">
-          <a href="#library" class="chip-btn active" style="text-decoration: none;">Усі (2)</a>
-          <a href="#library" class="chip-btn" style="text-decoration: none;">Встановлені</a>
-        </div>
-
-        <div class="section-heading">Колекція ігор</div>
-        
-        <div class="games-list">
+        <div class="section-heading">🎮 Ваша бібліотека ігор</div>
+        <div class="games-grid">
           <div class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=200&auto=format&fit=crop" alt="GTA V">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg" alt="CS2"></div>
             <div class="game-info">
-              <div class="game-name">Grand Theft Auto V</div>
-              <div class="game-genre">Грати • 420 годин</div>
-              <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
-            </div>
-            <div class="game-price-box">
-              <button class="buy-btn" style="margin:0;">Грати</button>
+              <div class="game-name">Counter-Strike 2</div>
+              <div class="game-tags">Встановлено • 1,240 годин</div>
+              <button class="play-btn-steam">ГРАТИ</button>
             </div>
           </div>
-
           <div class="game-card">
-            <img class="game-avatar" src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?q=80&w=200&auto=format&fit=crop" alt="God of War">
+            <div class="game-img-wrap"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg" alt="Terraria"></div>
             <div class="game-info">
-              <div class="game-name">God of War</div>
-              <div class="game-genre">Грати • 85 годин</div>
-              <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
-            </div>
-            <div class="game-price-box">
-              <button class="buy-btn" style="margin:0;">Грати</button>
+              <div class="game-name">Terraria</div>
+              <div class="game-tags">Встановлено • 85 годин</div>
+              <button class="play-btn-steam">ГРАТИ</button>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ================= СТОРІНКА 4: STEAM GUARD ================= -->
+      <!-- ================= СПІЛЬНОТА ================= -->
+      <section id="community" class="page-section">
+        <div class="section-heading">🌐 Стрічка спільноти</div>
+        <div class="news-card">
+          <div class="news-date">Обговорення</div>
+          <h3 class="news-title">Діліться своїми скріншотами та тактиками!</h3>
+          <p class="news-text">Спільнота гравців активно обговорює нові оновлення улюблених хітів.</p>
+        </div>
+      </section>
+
+      <!-- ================= STEAM GUARD ================= -->
       <section id="guard" class="page-section">
         <div class="guard-container">
           <div class="guard-shield">🛡️</div>
-          <h2>Steam Guard</h2>
-          <p class="guard-status">Ваш акаунт захищено</p>
-
+          <h2>Безпека Steam Guard</h2>
+          <p class="guard-status">Ваш акаунт надійно захищено</p>
           <div class="code-box">
-            <span class="code-label">Тимчасовий код авторизації:</span>
+            <span class="code-label">Тимчасовий код доступу:</span>
             <div class="code-value">K9X2P</div>
             <div class="code-timer">Код оновиться через 15 сек</div>
           </div>
-
-          <button class="guard-btn">Підтвердити вхід</button>
         </div>
       </section>
 
-      <!-- ================= СТОРІНКА 5: ПРОФІЛЬ ================= -->
+      <!-- ================= ПРОФІЛЬ ================= -->
       <section id="profile" class="page-section">
-        <div class="profile-header">
-          <div class="profile-avatar-wrap">
-            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=150&auto=format&fit=crop" alt="Avatar">
-            <span class="profile-level">42</span>
-          </div>
-          <div class="profile-names">
-            <div class="profile-name">CyberGamer_UA</div>
-            <div class="profile-status">В мережі</div>
-          </div>
-        </div>
-
-        <div class="profile-stats-grid">
-          <div class="stat-card">
-            <span class="stat-num">42</span>
-            <span class="stat-label">Рівень</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">18</span>
-            <span class="stat-label">Ігор</span>
-          </div>
-          <div class="stat-card">
-            <span class="stat-num">142</span>
-            <span class="stat-label">Досягнення</span>
+        <div class="profile-header-desktop">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=150&auto=format&fit=crop" alt="Avatar" class="profile-avatar-big">
+          <div>
+            <h2>CyberGamer_UA</h2>
+            <p style="color: #4ade80; font-size: 13px; margin-top: 4px;">● В мережі</p>
+            <p style="color: var(--text-muted); font-size: 12px; margin-top: 6px;">Рівень акаунта: 42 • Досягнень: 142</p>
           </div>
         </div>
       </section>
 
     </main>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Нижня панель навігації -->
     <nav class="bottom-navbar">
       <a href="#store" class="nav-btn">
         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
@@ -356,13 +414,13 @@
         <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
         Бібліотека
       </a>
+      <a href="#community" class="nav-btn">
+        <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        Спільнота
+      </a>
       <a href="#guard" class="nav-btn">
         <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
         Guard
-      </a>
-      <a href="#profile" class="nav-btn">
-        <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        Профіль
       </a>
     </nav>
 

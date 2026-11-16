@@ -1,14 +1,15 @@
 :root {
-  --bg-dark: #0f1217;
-  --card-bg: #161d24;
+  --bg-dark: #1b2838;
+  --card-bg: #16202d;
   --header-bg: #171a21;
   --accent-blue: #66c0f4;
-  --accent-btn: #2172ba;
+  --accent-btn: #5c7e10;
+  --accent-btn-hover: #729a13;
   --discount-bg: #4c6b22;
   --discount-text: #beee11;
-  --text-white: #ffffff;
+  --text-white: #c7d5e0;
   --text-muted: #8f98a0;
-  --border-color: #212b35;
+  --border-color: #0f1821;
 }
 
 * {
@@ -19,57 +20,72 @@
 }
 
 body {
-  background-color: #080a0c;
+  background-color: #0b1016;
   color: var(--text-white);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  padding: 15px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
 }
 
-/* Контейнер макета сайту */
+/* Вікно десктопного додатку Steam */
 .app-frame {
   width: 100%;
-  max-width: 390px;
+  max-width: 1000px;
+  height: 680px;
   background-color: var(--bg-dark);
-  border-radius: 20px;
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 2px solid #232d38;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  border: 1px solid #2a475e;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.9);
   position: relative;
 }
 
-/* Шапка додатка */
+/* Верхня панель (класичний стиль Steam) */
 .app-header {
   background-color: var(--header-bg);
-  padding: 10px 14px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
 .app-logo {
   font-weight: 900;
-  font-size: 15px;
-  letter-spacing: 1px;
-  color: var(--text-white);
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+}
+
+.top-nav {
   display: flex;
-  align-items: center;
-  gap: 6px;
+  gap: 15px;
+}
+
+.top-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.top-link:hover, .top-link.active {
+  color: #ffffff;
 }
 
 .search-input-wrap {
   flex: 1;
-  background-color: #10161d;
-  border-radius: 4px;
+  max-width: 300px;
+  background-color: #0e1621;
+  border-radius: 3px;
   padding: 6px 10px;
-  display: flex;
-  align-items: center;
+  border: 1px solid #2a475e;
 }
 
 .search-input-wrap input {
@@ -81,437 +97,416 @@ body {
   outline: none;
 }
 
-.search-input-wrap input::placeholder {
-  color: #4f5a65;
-}
-
 .user-badge {
-  background-color: #1d2733;
+  background-color: #2a475e;
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  color: var(--accent-blue);
+  font-size: 12px;
+  color: #ffffff;
   font-weight: bold;
+  text-decoration: none;
 }
 
 /* Основний контент */
 .main-body {
-  padding: 12px;
+  padding: 20px;
+  flex: 1;
   overflow-y: auto;
-  height: 520px;
+  padding-bottom: 80px;
 }
 
-/* ЛОГІКА ПЕРЕМЕКАННЯ СТОРІНОК НА CSS (:target) */
+/* Перемикання сторінок через :target */
 .page-section {
   display: none;
 }
-
 .page-section:first-child {
   display: block;
 }
-
 .page-section:target {
   display: block;
 }
 
+#store:target ~ .page-section:first-child,
 #news:target ~ .page-section:first-child,
 #library:target ~ .page-section:first-child,
 #guard:target ~ .page-section:first-child,
 #profile:target ~ .page-section:first-child,
-#action-games:target ~ .page-section:first-child,
-#rpg-games:target ~ .page-section:first-child,
-#game-details:target ~ .page-section:first-child,
 #gta-details:target ~ .page-section:first-child,
 #rdr2-details:target ~ .page-section:first-child,
-#gow-details:target ~ .page-section:first-child {
+#gow-details:target ~ .page-section:first-child,
+#cyberpunk-details:target ~ .page-section:first-child,
+#action-games:target ~ .page-section:first-child,
+#rpg-games:target ~ .page-section:first-child {
   display: none;
 }
 
-/* ЕЛЕМЕНТИ МАГАЗИНУ */
+/* Великий промо-банер магазину */
 .hero-banner {
   position: relative;
-  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(15,18,23,0.95) 100%), 
-              url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop');
+  background: linear-gradient(90deg, rgba(27,40,56,0.9) 0%, rgba(27,40,56,0.3) 100%), 
+              url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
-  border-radius: 12px;
-  padding: 16px;
-  min-height: 150px;
+  border-radius: 6px;
+  padding: 24px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-bottom: 16px;
-  border: 1px solid #232d38;
+  margin-bottom: 20px;
+  border: 1px solid #2a475e;
 }
 
 .promo-tag {
-  background-color: #eab308;
-  color: #000;
-  font-size: 9px;
-  font-weight: 900;
-  padding: 2px 6px;
+  background-color: #2a475e;
+  color: #66c0f4;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 8px;
   border-radius: 3px;
   width: fit-content;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
 .banner-title {
-  font-size: 15px;
+  font-size: 24px;
   font-weight: bold;
-  margin-bottom: 2px;
+  color: #ffffff;
+  margin-bottom: 6px;
 }
 
 .banner-desc {
-  font-size: 10px;
-  color: var(--text-muted);
-  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--text-white);
+  margin-bottom: 14px;
+  max-width: 500px;
 }
 
 .price-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
 }
 
 .discount-badge {
   background-color: var(--discount-bg);
   color: var(--discount-text);
   font-weight: bold;
-  font-size: 11px;
-  padding: 3px 6px;
-  border-radius: 3px;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 2px;
 }
 
 .price-amount {
-  background-color: #090c0f;
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 3px;
-  font-weight: 600;
-  color: var(--text-white);
+  background-color: #0b1016;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
 .buy-btn {
-  background-color: var(--accent-btn);
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 4px;
-  font-size: 11px;
+  background: linear-gradient(to bottom, #799d1c 5%, #5c7e10 100%);
+  color: #ffffff;
+  border: 1px solid #3b4e0a;
+  padding: 6px 16px;
+  border-radius: 3px;
+  font-size: 12px;
   font-weight: bold;
+  text-decoration: none;
   margin-left: auto;
-  cursor: pointer;
 }
 
-/* ФІЛЬТРИ */
+.buy-btn:hover {
+  background: linear-gradient(to bottom, #8db520 5%, #6a9212 100%);
+}
+
+/* Фільтри */
 .filter-chips {
   display: flex;
-  gap: 6px;
-  margin-bottom: 16px;
-  overflow-x: auto;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .chip-btn {
-  background-color: #1d2733;
-  color: var(--text-muted);
+  background-color: #2a475e;
+  color: #ffffff;
   border: none;
-  padding: 5px 12px;
-  border-radius: 12px;
-  font-size: 11px;
+  padding: 6px 14px;
+  border-radius: 3px;
+  font-size: 12px;
   cursor: pointer;
-  white-space: nowrap;
+  text-decoration: none;
 }
 
-.chip-btn.active {
-  background-color: var(--accent-blue);
-  color: #000;
+.chip-btn.active, .chip-btn:hover {
+  background-color: #66c0f4;
+  color: #1b2838;
   font-weight: bold;
 }
 
 .section-heading {
-  font-size: 13px;
-  color: #dbe2e8;
-  margin-bottom: 10px;
-  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 14px;
+  font-weight: bold;
 }
 
-/* СПИСОК ІГОР (Картки-посилання) */
-.games-list {
+/* СІТКА ІГОР СТИЛЮ STEAM (Прямокутні банери) */
+.games-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
 }
 
 .game-card {
   background-color: var(--card-bg);
-  border-radius: 8px;
-  padding: 8px 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #2a475e;
   text-decoration: none;
   color: inherit;
-  transition: background-color 0.2s;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s;
 }
 
 .game-card:hover {
-  background-color: #1c2530;
+  transform: translateY(-3px);
+  border-color: #66c0f4;
 }
 
-.game-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
+.game-img-wrap {
+  width: 100%;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-img-wrap img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  flex-shrink: 0;
+}
+
+.card-discount {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: var(--discount-bg);
+  color: var(--discount-text);
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 2px;
 }
 
 .game-info {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
   flex: 1;
-  min-width: 0;
+  justify-content: space-between;
 }
 
 .game-name {
   font-size: 13px;
   font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 4px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--text-white);
 }
 
-.game-genre {
-  font-size: 11px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.game-price-box {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  flex-shrink: 0;
-}
-
-/* НОВИНИ */
-.news-card {
-  background-color: var(--card-bg);
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 10px;
-}
-
-.news-date {
+.game-tags {
   font-size: 10px;
-  color: var(--accent-blue);
-  margin-bottom: 4px;
-}
-
-.news-title {
-  font-size: 13px;
-  margin-bottom: 6px;
-  color: var(--text-white);
-}
-
-.news-text {
-  font-size: 11px;
   color: var(--text-muted);
-  line-height: 1.4;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.news-footer {
+.game-footer-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
+}
+
+.game-platform {
   font-size: 10px;
-}
-
-.news-tag {
-  background-color: #1d2733;
-  color: var(--accent-blue);
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.news-comments {
   color: var(--text-muted);
 }
 
-/* ПРОГРЕС БАР */
-.progress-bar {
-  width: 100%;
-  height: 4px;
-  background-color: #10161d;
+.price-tag {
+  background-color: #0b1016;
+  font-size: 11px;
+  padding: 3px 8px;
   border-radius: 2px;
-  margin-top: 6px;
-  overflow: hidden;
+  color: #ffffff;
+  font-weight: bold;
 }
 
-.progress-fill {
-  height: 100%;
-  background-color: var(--accent-blue);
-  border-radius: 2px;
+.price-tag.highlight {
+  color: var(--discount-text);
+  background-color: #233513;
 }
 
-/* STEAM GUARD */
-.guard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px 10px;
+.old-price {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin-right: 4px;
 }
 
-.guard-shield {
-  font-size: 48px;
+/* Сторінка деталізації гри */
+.back-bar {
+  margin-bottom: 15px;
+}
+
+.game-detail-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #2a475e;
+}
+
+.detail-left h2 {
+  font-size: 22px;
+  color: #ffffff;
   margin-bottom: 10px;
 }
 
-.guard-container h2 {
-  font-size: 18px;
-  margin-bottom: 4px;
-}
-
-.guard-status {
+.detail-desc {
   font-size: 12px;
-  color: #4ade80;
-  margin-bottom: 24px;
+  color: var(--text-white);
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-.code-box {
-  background-color: #10161d;
-  border: 2px dashed var(--accent-blue);
-  border-radius: 12px;
-  padding: 16px;
-  width: 100%;
-  margin-bottom: 20px;
+.screenshot-grid {
+  display: flex;
+  gap: 10px;
 }
 
-.code-label {
-  font-size: 10px;
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 8px;
+.screenshot-grid img {
+  width: 48%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #2a475e;
 }
 
-.code-value {
-  font-size: 32px;
-  font-weight: 900;
-  letter-spacing: 6px;
-  color: var(--accent-blue);
-}
-
-.code-timer {
-  font-size: 10px;
-  color: var(--text-muted);
-  margin-top: 8px;
-}
-
-.guard-btn {
-  background-color: var(--accent-btn);
-  color: white;
-  border: none;
-  width: 100%;
-  padding: 12px;
+.buy-box-panel {
+  background-color: #0b1016;
+  padding: 20px;
   border-radius: 6px;
+  border: 1px solid #2a475e;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
+.price-big {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.green-btn {
+  background: linear-gradient(to bottom, #799d1c 5%, #5c7e10 100%);
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  text-decoration: none;
   font-weight: bold;
   font-size: 13px;
-  cursor: pointer;
 }
 
-/* ПРОФІЛЬ */
-.profile-header {
+/* Новини та бібліотека */
+.news-card {
+  background-color: var(--card-bg);
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #2a475e;
+}
+.news-date { font-size: 11px; color: var(--accent-blue); margin-bottom: 6px; }
+.news-title { font-size: 15px; color: #fff; margin-bottom: 8px; }
+.news-text { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+.play-btn-steam {
+  background: linear-gradient(to bottom, #799d1c 5%, #5c7e10 100%);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Steam Guard */
+.guard-container {
+  max-width: 400px;
+  margin: 20px auto;
+  background-color: var(--card-bg);
+  padding: 24px;
+  border-radius: 6px;
+  border: 1px solid #2a475e;
+  text-align: center;
+}
+.guard-shield { font-size: 48px; margin-bottom: 10px; }
+.guard-container h2 { font-size: 18px; color: #fff; margin-bottom: 6px; }
+.guard-status { font-size: 12px; color: #4ade80; margin-bottom: 20px; }
+.code-box { background-color: #0b1016; border: 1px dashed #66c0f4; padding: 15px; border-radius: 4px; }
+.code-label { font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px; }
+.code-value { font-size: 32px; font-weight: 900; letter-spacing: 6px; color: #66c0f4; }
+.code-timer { font-size: 10px; color: var(--text-muted); margin-top: 6px; }
+
+/* Профіль */
+.profile-header-desktop {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
   background-color: var(--card-bg);
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-  margin-bottom: 12px;
+  padding: 24px;
+  border-radius: 6px;
+  border: 1px solid #2a475e;
 }
-
-.profile-avatar-wrap {
-  position: relative;
-  width: 52px;
-  height: 52px;
-}
-
-.profile-avatar-wrap img {
-  width: 100%;
-  height: 100%;
+.profile-avatar-big {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #66c0f4;
 }
 
-.profile-level {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  background-color: var(--accent-btn);
-  color: white;
-  font-size: 9px;
-  font-weight: bold;
-  padding: 1px 5px;
-  border-radius: 50%;
-  border: 2px solid var(--card-bg);
-}
-
-.profile-name {
-  font-size: 14px;
-  font-weight: bold;
-}
-
-.profile-status {
-  font-size: 11px;
-  color: #4ade80;
-  margin-top: 2px;
-}
-
-.profile-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.stat-card {
-  background-color: var(--card-bg);
-  padding: 10px;
-  text-align: center;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-}
-
-.stat-num {
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--accent-blue);
-}
-
-.stat-label {
-  font-size: 10px;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-/* НИЖНЯ НАВІГАЦІЯ */
+/* Нижня панель навігації */
 .bottom-navbar {
-  background-color: #12161c;
-  height: 56px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--header-bg);
+  height: 60px;
   display: flex;
   justify-content: space-around;
   align-items: center;
   border-top: 1px solid var(--border-color);
+  z-index: 100;
 }
 
 .nav-btn {
@@ -519,17 +514,36 @@ body {
   flex-direction: column;
   align-items: center;
   color: var(--text-muted);
-  font-size: 9px;
+  font-size: 10px;
   text-decoration: none;
-  gap: 3px;
+  gap: 4px;
 }
 
 .nav-btn:hover {
-  color: var(--accent-blue);
+  color: #ffffff;
 }
 
 .nav-btn svg {
   width: 20px;
   height: 20px;
   fill: currentColor;
+}
+#store:target ~ .page-section:first-child,
+#news:target ~ .page-section:first-child,
+#library:target ~ .page-section:first-child,
+#community:target ~ .page-section:first-child,
+#guard:target ~ .page-section:first-child,
+#profile:target ~ .page-section:first-child,
+#free-games:target ~ .page-section:first-child,
+#action-cat:target ~ .page-section:first-child,
+#survival-cat:target ~ .page-section:first-child,
+#multiplayer-cat:target ~ .page-section:first-child,
+#cs2-details:target ~ .page-section:first-child,
+#dota2-details:target ~ .page-section:first-child,
+#terraria-details:target ~ .page-section:first-child,
+#gta-details:target ~ .page-section:first-child,
+#lethal-details:target ~ .page-section:first-child,
+#bg3-details:target ~ .page-section:first-child,
+#cyberpunk-details:target ~ .page-section:first-child {
+  display: none;
 }
